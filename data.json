@@ -1,0 +1,32 @@
+{
+    "companyName": "Арт-гостиная",
+    "birthday": "20.05.2016",
+    "city": "Киев",
+    "address": "ул. Жилянская, 20",
+    "workers": [{
+            "name": "Григорий Голобородько",
+            "email": "goloborodko1978@gmail.com",
+            "phone": "378-19-47",
+            "position": "Директор",
+            "active": "пн., ср. ,пт. 15-17-00"
+        }, {
+            "name": "Иван Мунич",
+            "email": "munich-i@ukr.net",
+            "phone": "378-19-48",
+            "position": "Зам. директора",
+            "active": "пн., ср. ,пт.14-17-00"
+        }, {
+            "name": "Ирина Белоголовко",
+            "email": "belogolovko.irina@bigmir.net",
+            "phone": "378-22-40",
+            "position": "Главный бухгалтер",
+            "active": "вт., ср. 14-17-00"
+        }, {
+            "name": "Степан Ефремов",
+            "email": "efrem.st@yahoo.com",
+            "phone": "378-12-32",
+            "position": "Aрт-директор",
+            "active": "вт., ср. 10-13-00"
+        }
+    ]
+}

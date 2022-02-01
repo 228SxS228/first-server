@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Получение данных из JSON-файла на html-plus.in.ua и оформление их в таблицу">
+    <title>HTML+ - получение данных из JSON-файла</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            max-width: 1000px;
+            margin: 10px auto;
+        }
+        #workers {
+            border: 2px solid #2466b2;
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px auto;
+        }
+        #workers tr {
+            border-bottom: 1px solid #2466b2;
+        }
+        #workers tr:nth-child(even) {
+            background: #c7e0fc;
+        }
+        #workers td,
+        #workers th {
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="info"></div>
+    <table id="workers"></table>
+    <script>
+        var workersTable = document.getElementById('workers'),
+            info = document.getElementById('info'),
+            requestURL = 'data.json',
+            request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+         //request.responseType = 'json';
+        request.onload = function(e) {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    console.log(request.response);
+                    var dataTable = JSON.parse(request.responseText);
+                    getTableInfo(dataTable);
+                } else {
+                    console.error(request.statusText);
+                }
+            }
+        };
+        request.onerror = function(e) {
+            console.error(request.statusText);
+        };
+        request.send();
+         //        request.send(null);
+
+        function getTableInfo(data) {
+            info.innerHTML = `<h2>Компания: ${data.companyName}</h2>
+<p>Адрес: ${data.city}, ${data.address}</p> 
+<p>Дата основания: ${data.birthday}</p>`;
+            //    console.log(data.workers instanceof Array)
+            //    console.log(Array.isArray(data.workers))
+            let headerTr = document.createElement('tr');
+            headerTr.innerHTML = '<th>ФИО</th><th>Должность</th><th>Email</th><th>Телефон</th><th>Приемные дни/часы</th>';
+            workersTable.appendChild(headerTr);
+            data.workers.forEach(function(elem) {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `<td>${elem.name}</td><td>${elem.position}</td><td>${elem.email}</td><td>${elem.phone}</td><td>${elem.active}</td>`;
+                workers.appendChild(tr);
+            });
+        }
+        /*request.onload = function() {
+            var dataTable = request.response;
+            console.log(request, request.response);
+            //populateHeader(superHeroes);
+            //showHeroes(superHeroes);
+        }*/
+    </script>
+</body>
+
+</html>
